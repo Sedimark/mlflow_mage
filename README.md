@@ -4,15 +4,15 @@ MLFlow mage is a wrapper for MLFlow to allow for better logging capabilites insi
 
 ## Environment Variable
 
-MLFLOW_S3_ENDPOINT_URL=http://localhost:9000 # The endpoint for the minio api change only the port if modified in docker-compose.yaml
-AWS_ACCESS_KEY_ID=admin # The username for the Minio instance
-AWS_SECRET_ACCESS_KEY=minio_sedimark # The password for the Minio instance
-MLFLOW_TRACKING_INSECURE_TLS=true # DO NOT MODIFY
-MLFLOW_FLASK_SERVER_SECRET_KEY=mlflow_sedimark
-MLFLOW_EXPERIMENT_NAME=Default
-MLFLOW_TRACKING_USERNAME=admin # The username of the admin account for the MLFlow instance
-MLFLOW_TRACKING_PASSWORD=password1234 # The password of the admin account for the MLFlow instance
-MLFLOW_TRACKING_URI=http://localhost:5000 # The URL for the MLFlow instance
+- MLFLOW_S3_ENDPOINT_URL=http://localhost:9000 # The endpoint for the minio api change only the port if modified in docker-compose.yaml
+- AWS_ACCESS_KEY_ID=admin # The username for the Minio instance
+- AWS_SECRET_ACCESS_KEY=minio_sedimark # The password for the Minio instance
+- MLFLOW_TRACKING_INSECURE_TLS=true # DO NOT MODIFY
+- MLFLOW_FLASK_SERVER_SECRET_KEY=mlflow_sedimark
+- MLFLOW_EXPERIMENT_NAME=Default
+- MLFLOW_TRACKING_USERNAME=admin # The username of the admin account for the MLFlow instance
+- MLFLOW_TRACKING_PASSWORD=password1234 # The password of the admin account for the MLFlow instance
+- MLFLOW_TRACKING_URI=http://localhost:5000 # The URL for the MLFlow instance
 
 ## MlflowSaver
 
