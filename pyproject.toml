@@ -1,0 +1,22 @@
+[project]
+name = "mlflow-mage"
+version = "0.1.0"
+description = "MLFlow mage is a wrapper for MLFlow to allow for better logging capabilites inside Mage AI."
+readme = "README.md"
+authors = [
+    { name = "Jarcau Stefan-Cristian", email = "stefan.jarcau@siemens.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "boto3>=1.39.6",
+    "mlflow>=3.1.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
