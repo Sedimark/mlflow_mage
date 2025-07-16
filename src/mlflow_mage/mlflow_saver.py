@@ -146,6 +146,7 @@ class MlflowSaver:
         output_example: Any,
         model_name: str = "model",
         framework: str = "auto",
+        pip_requirements: Optional[list[str]] = None
     ):
         """
         Log a model based on the current active run.
@@ -162,6 +163,8 @@ class MlflowSaver:
             The name of the model.
         framework : str
             The framework behind the model, can be 'auto', 'sklearn', 'pytorch', 'tensorflow', 'xgboost', 'lightgbm'.
+        pip_requirements : Optional[list[str]] = None
+            Pip requirements that needs to be installed when using this model through MLflow.
 
         Return:
         --------
@@ -190,21 +193,20 @@ class MlflowSaver:
                 pass
 
         signature = mlflow.models.infer_signature(input_example, output_example)
-        print(signature.to_dict())
 
         model_info = None
         if framework == "sklearn":
-            model_info = mlflow.sklearn.log_model(model, name=model_name, signature=signature)
+            model_info = mlflow.sklearn.log_model(model, name=model_name, signature=signature, pip_requirements=pip_requirements)
         elif framework == "pytorch":
-            model_info = mlflow.pytorch.log_model(model, name=model_name, signature=signature)
+            model_info = mlflow.pytorch.log_model(model, name=model_name, signature=signature, pip_requirements=pip_requirements)
         elif framework == "tensorflow":
-            model_info = mlflow.tensorflow.log_model(model, name=model_name, signature=signature)
+            model_info = mlflow.tensorflow.log_model(model, name=model_name, signature=signature, pip_requirements=pip_requirements)
         elif framework == "xgboost":
-            model_info = mlflow.xgboost.log_model(model, name=model_name, signature=signature)
+            model_info = mlflow.xgboost.log_model(model, name=model_name, signature=signature, pip_requirements=pip_requirements)
         elif framework == "lightgbm":
-            model_info = mlflow.lightgbm.log_model(model, name=model_name, signature=signature)
+            model_info = mlflow.lightgbm.log_model(model, name=model_name, signature=signature, pip_requirements=pip_requirements)
         else:
-            model_info = mlflow.pyfunc.log_model(model, name=model_name, signature=signature)
+            model_info = mlflow.pyfunc.log_model(model, name=model_name, signature=signature, pip_requirements=pip_requirements)
 
         if model_info is not None:
             self._model_uri = model_info.model_uri
@@ -364,7 +366,7 @@ class MlflowSaver:
         return self.register_model(self._model_uri, name, description, tags)
 
 
-def register_model_from_run(
+def register_model(
     model_uri: str,
     name: str,
     description: Optional[str] = None,
